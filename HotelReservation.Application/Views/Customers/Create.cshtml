@@ -1,0 +1,214 @@
+﻿@model HotelReservation.ViewModels.CustomerViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="card" style="margin-top: 20px;">
+    <div class="card-body">
+        <h2 class="card-title">Customer</h2>
+        <h3 class="card-subtitle">Please fill in your information</h3>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.UserID)
+                @*<div class="form-group">
+                        @Html.LabelFor(model => model.UserID, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.UserID, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.StreetNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.StreetNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.StreetNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CityID, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.CityID, new SelectList(Model.Cities, "CityID", "CityName"),
+                                 "--- Select City ---", htmlAttributes: new
+                                 {
+                                     @class = "form-control selectpicker",
+                                 })
+
+                        @*@Html.DropDownList("CityID", null, htmlAttributes: new { @class = "form-control" })*@
+
+                        @Html.ValidationMessageFor(model => model.CityID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProvinceName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @*Html.DropDownListFor(model => model.CityID, new SelectList(Model.Cities, "CityID", "CityName"), "", htmlAttributes: new { @class = "form-control" })*@
+
+                        @Html.DropDownListFor(model => model.ProvinceName, new SelectList(Model.Provinces, "ProvinceID", "ProvinceName"),
+                                 "--- Select Province ---", htmlAttributes: new { @class = "form-control" })
+
+                        @Html.ValidationMessage("ProvinceName", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PostalCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.PostalCode, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PostalCode, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CountryName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @*Html.DropDownListFor(model => model.CityID, new SelectList(Model.Cities, "CityID", "CityName"), "", htmlAttributes: new { @class = "form-control" })*@
+
+                        @Html.Editor("CountryName", new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+
+                        @Html.ValidationMessage("CountryName", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.EmailAddress, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <div class="btn-group">
+                            <input type="submit" value="Create" class="btn btn-primary" style="margin-right: 5px;" />
+                        </div>
+                        @if (User.IsInRole("admin") || User.IsInRole("receptionist"))
+                        {
+                            <a href="@Url.Action("Index", "Customers")" class="btn btn-danger">
+                                Cancel
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+
+        @*<div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>*@
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+
+    <script type="text/javascript">
+        $(function(){
+            // select the element and wait for the onchange event
+            $("#CityID").change(function() {
+
+                var t = $(this).val();
+
+                if (t !== "") {
+                    // post the id (if given) to the specified route to return the price
+                    var reqUrl = "/api/Location/GetProvinceByCity?CityID=";
+                    $.post(reqUrl + t, function (res) {
+                        // return price value only when success is true
+                        if (res.success === "true") {
+                            $("#ProvinceName").html("");
+                            $.each(res.data.provinces, function (i, province) {
+                                $("#ProvinceName")
+                                    .append('<option>--- Select Province ---</option>')
+                                    .append($('<option></option>')
+                                    .val(province.ProvinceID).html(province.ProvinceName));
+                            });
+                        } else {
+                            alert("Error getting Province Name!");
+                        }
+                    });
+                } else {
+                    // if no id value passed keep the price text field empty
+                    $("input.ProvinceName").html("");
+                }
+
+            });
+
+            $("#ProvinceName").change(function() {
+
+                var t = $(this).val();
+
+                if (t !== "") {
+                    // post the id (if given) to the specified route to return the price
+                    var reqUrl = "/api/Location/GetCountryByProvince?ProvinceID="
+                    $.post(reqUrl + t, function (res) {
+                        // return price value only when success is true
+                        if (res.success === "true") {
+                            $("#CountryName").val(res.data.countries.CountryName);
+
+                        } else {
+                            alert("Error getting Country Name!");
+                        }
+                    });
+                } else {
+                    // if no id value passed keep the price text field empty
+                    $("input.CountryName").html("");
+                }
+
+            });
+
+            $('.selectpicker').selectpicker({
+                liveSearch: true,
+                showSubtext: true,
+                width: '280px',
+                virtualScroll: true
+            });
+
+        });
+
+    </script>
+}

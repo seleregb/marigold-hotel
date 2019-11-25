@@ -1,0 +1,195 @@
+﻿@model HotelReservation.ViewModels.PaymentViewModel
+
+@{
+    ViewBag.Title = "Make Payment";
+}
+
+<div class="card" style="margin-top: 20px;">
+    <div class="card-body">
+        <h2 class="card-title">Reservation Summary</h2>
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReservationDetails.CustomerName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReservationDetails.RoomTypeName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReservationDetails.CheckInDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReservationDetails.CheckOutDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReservationDetails.TotalPaymentDue)
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.ReservationDetails.CustomerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ReservationDetails.RoomTypeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ReservationDetails.CheckInDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ReservationDetails.CheckOutDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ReservationDetails.TotalPaymentDue)
+                </td>
+                @*<td>
+                    @Html.ActionLink("Edit", "Edit", "Reservations", new { id = Model.ReservationDetails.ResID }) |
+                    @Html.ActionLink("Details", "Details", "Reservations", new { id = Model.ReservationDetails.ResID }) |
+                    @Html.ActionLink("Delete", "Delete", "Reservations", new { id = Model.ReservationDetails.ResID })
+                </td>*@
+            </tr>
+        </table>
+    </div>
+</div>
+
+<hr />
+<div class="card">
+    <div class="card-title">Payment Information</div>
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @*<div class="form-group">
+            @Html.LabelFor(model => model.CustomerName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CustomerName, null, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+            @Html.HiddenFor(model => model.ReservationID)
+            @Html.HiddenFor(model => model.CustomerID)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PaymentMethodID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@foreach (var item in Model.MethodsOfPayment)
+                {
+                            @Html.RadioButtonFor(model => model.PaymentMethodID, item.PaymentMethodID, htmlAttributes: new { @class = "checkbox-inline" })
+                        }*@
+                    @Html.DropDownListFor(model => model.PaymentMethodID, new SelectList(Model.MethodsOfPayment,
+                     "PaymentMethodID", "PaymentDescription"), "Select Card Type", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PaymentMethodID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CardHolder, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CardHolder, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CardHolder, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Cardnumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Cardnumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Cardnumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ExpiryDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ExpiryDate, new { htmlAttributes = new { @class = "form-control", placeholder = "03/2018" } })
+                    @Html.ValidationMessageFor(model => model.ExpiryDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.SecurityCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.SecurityCode, new { htmlAttributes = new { @class = "form-control", placeholder = "345" } })
+                    @Html.ValidationMessageFor(model => model.SecurityCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PaymentAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PaymentAmount, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                    @Html.ValidationMessageFor(model => model.PaymentAmount, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <div class="btn-group" role="group" aria-label="...">
+                        <input type="submit" value="Make Payment" class="btn btn-primary" style="margin-right: 10px;" />
+                    </div>
+                    <a href="@Url.Action("CancelReservation", new { reservationId = Model.ReservationID })" class="btn btn-danger">
+                        Cancel
+                    </a>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script type="text/javascript">
+        $(function () {
+
+            $("#Cardnumber").keyup(function () {
+                var cardNum = this.value;
+
+                console.log("cardnum", cardNum);
+
+                var cardTypeId = $("#PaymentMethodID").val();
+
+                var cardTypes = {
+                    visa: "1280C483-36AF-4884-A42D-09714936EA27",
+                    master: "76040CEB-C792-440B-BFFA-633772B8064A",
+                    amex: "8D263DA8-2F24-4F6A-9E12-DD01B7E375BB"
+                };
+
+                var visaCard = new RegExp("^(4)");
+                var msCard = new RegExp("^(5|51|52|53|54|55)");
+                var amexCard = new RegExp("^(3|34|37)");
+
+                console.log(cardTypeId == cardTypes.master);
+
+                if (cardNum != "") {
+                    if (cardTypeId == cardTypes.visa && !visaCard.test(cardNum)) {
+                        alert("That is not a valid visa card number!");
+                        $("#Cardnumber").addClass("input-validation-error");
+                        $('.input-validation-error').parents('.form-group').addClass('has-error');
+                        $('.field-validation-error').addClass('text-danger');
+                    }
+                    else if (cardTypeId == cardTypes.master && !msCard.test(cardNum)) {
+                        alert("That is not a valid master card number!");
+                        $("#Cardnumber").addClass("input-validation-error");
+                        $('.input-validation-error').parents('.form-group').addClass('has-error');
+                        $('.field-validation-error').addClass('text-danger');
+                    }
+                    else if (cardTypeId == cardTypes.amex && !amexCard.test(cardNum)) {
+                        alert("That is not a valid american express card number!");
+                        $("#Cardnumber").addClass("input-validation-error");
+                        $('.input-validation-error').parents('.form-group').addClass('has-error');
+                        $('.field-validation-error').addClass('text-danger');
+                    }
+                } else {
+                    $('.form-group').removeClass('has-error');
+                }
+                
+            });
+        });
+    </script>
+
+
+}

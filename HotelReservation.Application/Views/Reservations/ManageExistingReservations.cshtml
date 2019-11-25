@@ -1,0 +1,76 @@
+﻿@model IEnumerable<HotelReservation.ViewModels.ReservationViewModel>
+
+@{
+    ViewBag.Title = "Manage Existing Reservations";
+}
+
+<h2>Manage Existing Reservations</h2>
+
+@if (ViewBag.reservationCount > 0)
+{
+    <table class="table table-responsive">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfBooking)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeOfBooking)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckInDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckOutDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalPaymentDue)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfBooking)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeOfBooking)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckInDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckOutDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPaymentDue)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ResID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ResID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ResID })
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div class="container">
+        <h2>Sorry you have no existing reservations</h2>
+    </div>
+}
+

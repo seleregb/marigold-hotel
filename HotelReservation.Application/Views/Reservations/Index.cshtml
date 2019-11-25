@@ -1,0 +1,88 @@
+﻿@model IEnumerable<HotelReservation.ViewModels.ReservationViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="card" style="margin-top: 20px;">
+    <div class="card-body">
+        <h2 class="card-title">Reservations</h2>
+
+        @if ((User.IsInRole("admin") || User.IsInRole("receptionist")) && User.Identity.IsAuthenticated)
+    {
+        <p>
+            @Html.ActionLink("Make New Reservation", "Create")
+        </p>
+}
+else
+{<p>
+        @Html.ActionLink("Make New Reservation", "MakeReservation")
+    </p>}
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.RoomTypeName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CustomerName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateOfBooking)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CheckInDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CheckOutDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalPaymentDue)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomTypeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfBooking)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckInDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckOutDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPaymentDue)
+                </td>
+                <td>
+                    @if ((User.IsInRole("receptionist") || User.IsInRole("admin")) && !item.RoomReserved)
+                {
+                    @Html.ActionLink("| Continue Payment", "Create", "Payments", new { reservationId = item.ResID }, null)
+            }
+                    @if ((User.IsInRole("receptionist") || User.IsInRole("admin")))
+                {
+                    @Html.ActionLink("| Edit", "Edit", new { id = item.ResID })
+                    @Html.ActionLink("| Details", "Details", new { id = item.ResID })
+                    @Html.ActionLink("| Delete", "Delete", new { id = item.ResID })
+            }
+                    @if ((User.IsInRole("user") || User.IsInRole("guest")))
+                {
+                    @Html.ActionLink("|Details", "Details", new { id = item.ResID })
+
+            }
+
+                </td>
+            </tr>
+    }
+
+        </table>
+    </div>
+</div>

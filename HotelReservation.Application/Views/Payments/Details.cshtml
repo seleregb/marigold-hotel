@@ -1,0 +1,54 @@
+﻿@model HotelReservation.ViewModels.PaymentViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="card" style="margin-top: 20px;">
+    <div class="card-body">
+        <h2 class="card-title">Details</h2>
+
+        <div>
+            <h4>Payment</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.CustomerID)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CustomerID)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.PaymentDescription)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PaymentDescription)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.PaymentAmount)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PaymentAmount)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.PaymentDetails)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PaymentDetails)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.PaymentID }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</div>

@@ -1,0 +1,161 @@
+﻿@model HotelReservation.ViewModels.ReservationViewModel
+
+@{
+    ViewBag.Title = "Make Reservation";
+}
+
+<div class="card" style="margin-top: 20px;">
+    <div class="card-body">
+        <h2 class="card-title">
+            Create Reservation
+        </h2>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.CustomerID)
+               
+                <div class="form-group">
+                    @Html.LabelFor(model => model.RoomTypeID, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.RoomTypeID, new SelectList(Model.RoomTypes, "RoomTypeID", "TypeDescription"), "Select Room Type", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.RoomTypeID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.RoomID, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.RoomID, new SelectList(Model.Rooms, "RoomID", "RoomNumber"), "Select Room", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.RoomID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NumberOfGuests, "NumberOfGuests", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("NumberOfGuests", null, "Choose No. of Guests", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.NumberOfGuests, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NumberOfRooms, "NumberOfRooms", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("NumberOfRooms", null, "Choose No. of Rooms", htmlAttributes: new { @class = "form-control", disabled = "disabled" })
+                        @Html.ValidationMessageFor(model => model.NumberOfRooms, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CheckInDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CheckInDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CheckInDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CheckOutDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CheckOutDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CheckOutDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TotalPaymentDue, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TotalPaymentDue, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                        @Html.ValidationMessageFor(model => model.TotalPaymentDue, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <div class="btn-group">
+                            <input type="submit" value="Create" class="btn btn-primary" style="margin-right: 5px;" />
+                        </div>
+                        <a href="@Url.Action("Index", "Reservations")" class="btn btn-danger">
+                            Cancel
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            // select the element and wait for the onchange event
+            $("#RoomTypeID").change(function () {
+
+                var t = $(this).val();
+
+                if (t !== "") {
+                    // post the id (if given) to the specified route to return the price
+                    var reqUrl = "/api/Reservations/GetRoomsByRoomType?roomTypeID=";
+                    $.get(reqUrl + t, function (res) {
+                        // return price value only when success is true
+                        if (res.success === "true") {
+                            $("#RoomID").html("");
+                            $("#RoomID")
+                                .append('<option>--- Select Room # ---</option>')
+                            $.each(res.data, function (i, room) {
+                                $("#RoomID")
+                                    .append($('<option></option>')
+                                        .val(room.RoomID).html(room.RoomNumber));
+                            });
+                            $("#NumberOfRooms").removeAttr("disabled");
+                            // based on the assumption that these rooms are the same price
+                            $("#TotalPaymentDue").val(res.data[0].Price);
+                            console.log(res.data[0].Price);
+                        } else {
+                            alert("Error getting list of rooms!");
+                        }
+                    });
+                } else {
+                    // if no id value passed keep the price text field empty
+                    $("input.RoomID").html("");
+                }
+
+            });
+
+
+            $("#NumberOfRooms").change(function () {
+                var rCount = $(this).val();
+                console.log("count changed", rCount);
+                var rType = $("#RoomTypeID").val();
+                console.log(rType);
+                var reqUrl = "/api/Reservations/CalculateRoomTypePrice?roomTypeId=";
+                if (rCount !== "") {
+                    $.get(reqUrl + rType
+                        + "&roomCount=" + rCount, function (res) {
+                            if (res.success === "true") {
+
+                                $("#TotalPaymentDue").val(res.data);
+                            } else {
+                                alert("Error calculating amount due!");
+                            }
+                    });
+                    //var currentPrice = $("#TotalPaymentDue").val();
+                    //var totalPrice = currentPrice * rCount;
+                    //console.log(totalPrice);
+                    //$("#TotalPaymentDue").val(totalPrice);
+                } else {
+                    $("#TotalPaymentDue").val("");
+                }
+            });
+        });
+    </script>
+}
+
+
+
+

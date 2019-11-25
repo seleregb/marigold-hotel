@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\HotelReservation.Entities\HotelReservation.Entities.csproj" />
+    <ProjectReference Include="..\HotelReservation.ValidationObjects\HotelReservation.Utilities.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+</Project>

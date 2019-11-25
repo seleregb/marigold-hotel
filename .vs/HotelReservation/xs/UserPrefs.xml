@@ -1,0 +1,37 @@
+﻿<Properties StartupConfiguration="{2685D8ED-DB66-473C-9C64-E0BFD237D89E}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="HotelReservation.Entities/ApplicationUser.cs">
+    <Files>
+      <File FileName="HotelReservation.Application/Startup.cs" Line="81" Column="1" />
+      <File FileName="HotelReservation.Entities/ApplicationDbContext.cs" Line="1" Column="1" />
+      <File FileName="HotelReservation.Entities/ApplicationUser.cs" Line="22" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="HotelReservation" expanded="True">
+            <Node name="HotelReservation.Application" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Home" expanded="True" />
+              </Node>
+              <Node name="appsettings.json" expanded="True" />
+            </Node>
+            <Node name="HotelReservation.Entities" expanded="True">
+              <Node name="ApplicationUser.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.HotelReservation.Test PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.HotelReservation.Application PreferredExecutionTarget="/Applications/Firefox.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/gbenro/Documents/development/hotelreservation_netcore/HotelReservation.Application/Controllers/CustomersController.cs" relfile="HotelReservation.Application/Controllers/CustomersController.cs" line="145" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

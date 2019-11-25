@@ -1,0 +1,63 @@
+﻿@model HotelReservation.ViewModels.RoomViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="card" style="margin-top: 20px;">
+    <div class="card-title">Details</div>
+    <div class="card-body">
+
+        <div>
+            <h4>Room</h4>
+            <hr />
+            <dl class="dl-horizontal">
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.RoomNumber)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.RoomNumber)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.RoomTypeName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.RoomTypeName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Floor)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Floor)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Reserved)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Reserved)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.RoomID }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</div>

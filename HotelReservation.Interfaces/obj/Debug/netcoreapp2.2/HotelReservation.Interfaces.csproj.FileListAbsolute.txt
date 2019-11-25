@@ -1,0 +1,17 @@
+/Users/gbenro/Documents/development/hotelreservation_netcore/HotelReservation.Interfaces/bin/Debug/netcoreapp2.2/HotelReservation.Interfaces.deps.json
+/Users/gbenro/Documents/development/hotelreservation_netcore/HotelReservation.Interfaces/bin/Debug/netcoreapp2.2/HotelReservation.Interfaces.dll
+/Users/gbenro/Documents/development/hotelreservation_netcore/HotelReservation.Interfaces/bin/Debug/netcoreapp2.2/HotelReservation.Interfaces.pdb
+/Users/gbenro/Documents/development/hotelreservation_netcore/HotelReservation.Interfaces/bin/Debug/netcoreapp2.2/HotelReservation.Entities.dll
+/Users/gbenro/Documents/development/hotelreservation_netcore/HotelReservation.Interfaces/bin/Debug/netcoreapp2.2/HotelReservation.Utilities.dll
+/Users/gbenro/Documents/development/hotelreservation_netcore/HotelReservation.Interfaces/bin/Debug/netcoreapp2.2/HotelReservation.ViewModels.dll
+/Users/gbenro/Documents/development/hotelreservation_netcore/HotelReservation.Interfaces/bin/Debug/netcoreapp2.2/Microsoft.AspNetCore.Identity.UI.dll
+/Users/gbenro/Documents/development/hotelreservation_netcore/HotelReservation.Interfaces/bin/Debug/netcoreapp2.2/HotelReservation.ViewModels.pdb
+/Users/gbenro/Documents/development/hotelreservation_netcore/HotelReservation.Interfaces/bin/Debug/netcoreapp2.2/HotelReservation.Entities.pdb
+/Users/gbenro/Documents/development/hotelreservation_netcore/HotelReservation.Interfaces/bin/Debug/netcoreapp2.2/HotelReservation.Utilities.pdb
+/Users/gbenro/Documents/development/hotelreservation_netcore/HotelReservation.Interfaces/bin/Debug/netcoreapp2.2/Microsoft.AspNetCore.Identity.UI.xml
+/Users/gbenro/Documents/development/hotelreservation_netcore/HotelReservation.Interfaces/obj/Debug/netcoreapp2.2/HotelReservation.Interfaces.csprojAssemblyReference.cache
+/Users/gbenro/Documents/development/hotelreservation_netcore/HotelReservation.Interfaces/obj/Debug/netcoreapp2.2/HotelReservation.Interfaces.AssemblyInfoInputs.cache
+/Users/gbenro/Documents/development/hotelreservation_netcore/HotelReservation.Interfaces/obj/Debug/netcoreapp2.2/HotelReservation.Interfaces.AssemblyInfo.cs
+/Users/gbenro/Documents/development/hotelreservation_netcore/HotelReservation.Interfaces/obj/Debug/netcoreapp2.2/HotelReservation.Interfaces.csproj.CopyComplete
+/Users/gbenro/Documents/development/hotelreservation_netcore/HotelReservation.Interfaces/obj/Debug/netcoreapp2.2/HotelReservation.Interfaces.dll
+/Users/gbenro/Documents/development/hotelreservation_netcore/HotelReservation.Interfaces/obj/Debug/netcoreapp2.2/HotelReservation.Interfaces.pdb

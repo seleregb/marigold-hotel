@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Payment Confirmed";
+}
+
+<div class="text-center">
+    <div class="alert alert-success" role="alert" style="margin-top: 20px;">
+        <strong>Transaction Successful</strong>
+        <p>Your transaction was successful and your reservation confirmed </p>
+    </div>
+    @if (User.IsInRole("guest"))
+    {
+    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+        <button type="submit" class="nav-link btn btn-link ">Exit</button>
+    </form>
+        @*<a href="@Url.Action("LogOff", "Account")" class="btn btn-primary">
+            Exit
+        </a>*@
+    }
+    else
+    {
+        <a href="@Url.Action("Index", "Reservations")" class="btn btn-primary">
+            Back to Reservations
+        </a>
+    }
+</div>
+
+
+
+

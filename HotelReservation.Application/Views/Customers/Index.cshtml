@@ -1,0 +1,72 @@
+﻿@model IEnumerable<HotelReservation.ViewModels.CustomerViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="card" style="margin-top: 20px;">
+    <div class="card-body">
+        <div class="card-title">Customers</div>
+
+        @if ((User.IsInRole("admin") || User.IsInRole("receptionist")) && User.Identity.IsAuthenticated)
+    {
+        <p>
+            @Html.ActionLink("Create New", "CreateCustomer")
+        </p>
+}
+else
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CustomerName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CityName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProvinceName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CountryName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EmailAddress)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CityName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProvinceName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CountryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmailAddress)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.CustID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.CustID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.CustID })
+                </td>
+            </tr>
+    }
+
+        </table>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<HotelReservation.ViewModels.PaymentViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="card" style="margin-top: 20px;">
+    <div class="card-body">
+        <h2 class="card-title">Payment History</h2>
+
+        @*<p>
+            @Html.ActionLink("Create New", "Create")
+        </p>*@
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CustomerName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PaymentDescription)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PaymentAmount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PaymentDetails)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentDetails)
+                </td>
+                <td>
+                    @if ((User.IsInRole("RECEPTIONIST") || User.IsInRole("ADMIN")))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PaymentID })
+            }|
+                    @Html.ActionLink("Details", "Details", new { id = item.PaymentID })
+                    @*|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PaymentID })*@
+                </td>
+            </tr>
+    }
+
+        </table>
+    </div>
+</div>
