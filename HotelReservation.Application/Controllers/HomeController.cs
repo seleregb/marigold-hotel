@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using HotelReservation.Application.Models;
-using HotelReservation.Application.Data;
 
 namespace HotelReservation.Application.Controllers
 {
