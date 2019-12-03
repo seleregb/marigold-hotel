@@ -42,7 +42,7 @@ namespace HotelReservation.Application
 
             services.AddDbContext<HotelDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("AZURE_DB")));
+                    Configuration.GetConnectionString("AZURE_DB_PGSQL")));
             services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()
             //services.AddDefaultIdentity<IdentityUser>()
