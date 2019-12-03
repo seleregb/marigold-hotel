@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace HotelReservation.Entities
 {
-    public class HotelDbContext : IdentityDbContext
+    public class HotelDbContext: IdentityDbContext
     {
         public HotelDbContext(DbContextOptions<HotelDbContext> options)
             : base(options)

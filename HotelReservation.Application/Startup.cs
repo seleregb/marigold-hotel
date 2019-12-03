@@ -46,8 +46,8 @@ namespace HotelReservation.Application
             services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()
             //services.AddDefaultIdentity<IdentityUser>()
-                .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddEntityFrameworkStores<HotelDbContext>();
+                .AddDefaultUI(UIFramework.Bootstrap4);
+                // .AddEntityFrameworkStores<HotelDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddRazorPagesOptions(options =>

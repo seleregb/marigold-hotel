@@ -19,7 +19,6 @@
 /Users/gbenro/Documents/development/hotelreservation_netcore/HotelReservation.Test/bin/Debug/netcoreapp2.2/HotelReservation.Utilities.pdb
 /Users/gbenro/Documents/development/hotelreservation_netcore/HotelReservation.Test/bin/Debug/netcoreapp2.2/Microsoft.AspNetCore.Identity.UI.xml
 /Users/gbenro/Documents/development/hotelreservation_netcore/HotelReservation.Test/obj/Debug/netcoreapp2.2/HotelReservation.Test.csprojAssemblyReference.cache
-/Users/gbenro/Documents/development/hotelreservation_netcore/HotelReservation.Test/obj/Debug/netcoreapp2.2/HotelReservation.Test.csproj.CoreCompileInputs.cache
 /Users/gbenro/Documents/development/hotelreservation_netcore/HotelReservation.Test/obj/Debug/netcoreapp2.2/HotelReservation.Test.AssemblyInfoInputs.cache
 /Users/gbenro/Documents/development/hotelreservation_netcore/HotelReservation.Test/obj/Debug/netcoreapp2.2/HotelReservation.Test.AssemblyInfo.cs
 /Users/gbenro/Documents/development/hotelreservation_netcore/HotelReservation.Test/obj/Debug/netcoreapp2.2/HotelReservation.Test.csproj.CopyComplete

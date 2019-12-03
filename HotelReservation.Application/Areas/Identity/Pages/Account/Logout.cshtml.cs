@@ -38,7 +38,7 @@ namespace HotelReservation.Application.Areas.Identity.Pages.Account
 
             if ((guestUser != null) && User.IsInRole(UserRoles.GUEST))
             {
-                _context.Users.Remove(guestUser);
+                // _context.Users.Remove(guestUser);
             }
 
             await _signInManager.SignOutAsync();
